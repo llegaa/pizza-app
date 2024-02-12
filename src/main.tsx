@@ -1,20 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Menu} from "./pages/Menu/Menu.tsx";
 import {Card} from "./pages/Card/Card.tsx";
 import {Error} from "./pages/Error/Error.tsx";
+import {Layout} from "./layout/Layout.tsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Menu/>
-    },
-    {
-        path: '/card',
-        element: <Card/>
+        element: <Layout/>,
+        children: [
+            {
+                path: '/',
+                element: <Menu/>
+            },
+            {
+               path: '/card',
+               element: <Card/>
+            }]
     },
     {
         path: '*',
