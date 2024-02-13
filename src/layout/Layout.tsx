@@ -25,7 +25,7 @@ export function Layout(){
                 Выйти
             </Button>
         </div>
-        <div>
+        <div className={style['content']}>
             <Outlet/>
         </div>
     </div>

@@ -1,5 +1,5 @@
 import style from './Button.module.css'
-import {ButtonProps} from "./Button.props.ts";
+import {ButtonProps} from "./ButtonProps.ts";
 import cn from 'classnames'
 
 // export const ButtonAlt: FC<ButtonProps> = ({className, children, ...props})=>{

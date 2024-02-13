@@ -1,7 +1,8 @@
 import {HeadlingProps} from "./HeadlingProps.ts";
-
-export function Headling({children, ...props}: HeadlingProps){
+import cn from "classnames";
+import style from "./Headling.module.css"
+export function Headling({children,className , ...props}: HeadlingProps){
     return(
-        <h1>{children}</h1>
+        <h1 {...props} className={cn(className, style['h1'])}>{children}</h1>
     )
 }
