@@ -1,0 +1,8 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/*# sourceMappingURL=MenuList.module.css.map */

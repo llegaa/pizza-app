@@ -3,7 +3,7 @@ import {ProductCardProps} from "./ProductCardProps.ts";
 import {Link} from "react-router-dom";
 export function ProductCard(props: ProductCardProps){
     return(
-        <Link to={'/'} className={style['link']}>
+        <Link to={`/product/${props.id}`} className={style['link']}>
             <div className={style['card']}>
                 <div className={style['head']} style={{backgroundImage: `url('${props.image}')`}}>
                     <div className={style['price']}>
@@ -19,7 +19,7 @@ export function ProductCard(props: ProductCardProps){
                     </div>
                 </div>
                 <div className={style['footer']}>
-                    <div className={style['title']}>{props.title}</div>
+                    <div className={style['title']}>{props.name}</div>
                     <div className={style['description']}>{props.description}</div>
                 </div>
             </div>

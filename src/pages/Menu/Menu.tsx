@@ -1,16 +1,44 @@
 import {Headling} from "../../components/Headling/Headling.tsx";
 import Search from "../../components/Search/Search.tsx";
 import style from "./Menu.module.css"
-import {ProductCard} from "../../components/ProductCard/ProductCard.tsx";
+import {PREFIX} from "../../helpers/API.ts";
+import {Product} from "../../interfaces/product.interface.ts";
+import {useEffect, useState} from "react";
+import axios, {AxiosError} from "axios";
+import {MenuList} from "./MenuList/MenuList.tsx";
 
-export function Menu(){
+function Menu(){
+    const [products, setProducts] = useState<Product[]>([])
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState<string | undefined>()
+    const getMenu = async ()=>{
+        try{
+            setIsLoading(true)
+            const {data} = await axios.get<Product[]>(`${PREFIX}/products`)
+            setProducts(data)
+            setIsLoading(false)
+        }catch (e){
+            if(e instanceof AxiosError){
+                setError(e.message)
+            }
+            setIsLoading(false)
+            console.error(e)
+            return
+        }
+    }
+    useEffect(()=> {
+        getMenu()
+    },[])
     return <>
         <div className={style['head']}>
             <Headling>Меню</Headling>
             <Search placeholder='Введите блюдо или состав'></Search>
         </div>
         <div>
-            <ProductCard id={1} title={'Наслаждение'} description={'Салями, руккола, помидоры, оливки'} image='/product.svg' price={300} rating={4.5}/>
+            {error && <>{error}</>}
+            {!isLoading && <MenuList products={products}/>}
+            {isLoading && <div>Загрузка...</div>}
         </div>
     </>
 }
+export default Menu;
