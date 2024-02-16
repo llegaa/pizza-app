@@ -1,19 +1,14 @@
-import style from './Button.module.css'
-import {ButtonProps} from "./ButtonProps.ts";
-import cn from 'classnames'
+import styles from './Button.module.css';
+import { ButtonProps } from './ButtonProps';
+import cn from 'classnames';
 
-// export const ButtonAlt: FC<ButtonProps> = ({className, children, ...props})=>{
-//     return(
-//         <button className={cn('button accent', className)} {...props}>{children}</button>
-//     )
-// }
-
-function Button({children, className, appearance = 'small', ...props}: ButtonProps){
-    return(
-        <button className={cn(style['button'], style['accent'], className, {
-            [style['small']]: appearance === 'small',
-            [style['bid']]: appearance === 'big'
+function Button({ children, className, appearance = 'small', ...props }: ButtonProps) {
+    return (
+        <button className={cn(styles['button'], styles['accent'], className, {
+            [styles['small']]: appearance === 'small',
+            [styles['big']]: appearance === 'big'
         })} {...props}>{children}</button>
-    )
+    );
 }
-export default Button
+
+export default Button;

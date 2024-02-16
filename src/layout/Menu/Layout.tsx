@@ -1,8 +1,17 @@
-import {NavLink, Outlet} from "react-router-dom";
-import Button from "../components/Button/Button.tsx";
+import {NavLink, Outlet, useNavigate} from "react-router-dom";
+import Button from "../../components/Button/Button.tsx";
 import style from "./Layout.module.css"
 import cn from "classnames"
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../store/store.ts";
+import {JWT_PERSISTENT_STATE, userActions} from "../../store/userSlice.ts";
 export function Layout(){
+    const navigate = useNavigate()
+    const dispatch = useDispatch<AppDispatch>()
+    const logout = ()=>{
+       dispatch(userActions.logout())
+        navigate('/auth/login')
+    }
     return <div className={style['layout']}>
         <div className={style['sidebar']}>
             <div className={style['user']}>
@@ -20,7 +29,7 @@ export function Layout(){
                 })} to='/card'><img src='/cart.svg' alt='корзина'/>
                     Корзина</NavLink>
             </div>
-            <Button className={style['exit']}>
+            <Button onClick={logout} className={style['exit']}>
                 <img src='/exit.svg' alt="Выход"/>
                 Выйти
             </Button>
